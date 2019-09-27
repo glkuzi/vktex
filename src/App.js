@@ -6,11 +6,13 @@ import Scrolltex from './components/Scrolltex'
 import Inputtex from './components/Inputtex'
 import Outputtex from './components/Outputtex'
 import Menutex from './components/Menutex'
+import Latex from "react-latex";
+import 'katex/dist/katex.min.css';
 function App () {
   return (
     <View activePanel="main">
       <Panel id="main">
-        <PanelHeader>VKUI</PanelHeader>
+        <PanelHeader><Latex>$VK\TeX$</Latex></PanelHeader>
 		
 		<Scrolltex/>
 		<Inputtex/>
