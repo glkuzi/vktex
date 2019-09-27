@@ -41,53 +41,55 @@ class Scrolltexmodal extends React.Component {
   };
 
   render() {
-    const modal = (
-      <ModalRoot activeModal={this.state.activeModal}>
-        <ModalPage
-          id={MODAL_PAGE_SYMBOLS}
-          onClose={this.modalBack}
-          header={
-            <ModalPageHeader
-              left={<HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
-            >
-              Символы
-            </ModalPageHeader>
-          }
-        >
-          
-        </ModalPage>
-
-        <ModalPage
-          id={MODAL_PAGE_EQUATIONS}
-          header={
-            <ModalPageHeader
-              left={<HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
-            >
-              Выражения
-            </ModalPageHeader>
-          }
-          onClose={this.modalBack}
-          settlingHeight={80}
-        >
-        </ModalPage>
-
-       
-      </ModalRoot>
-    );
+   
 
     return (
-	<div modal={modal}>
-	    <Header level="secondary">Инструменты</Header>
-        
-		<HorizontalScroll>
-              <Button size="xl" level="secondary" onClick={() => this.setActiveModal(MODAL_PAGE_SYMBOLS)}>
-                  Открыть символы
-              </Button>
-				<Button size="xl" level="secondary" onClick={() => this.setActiveModal(MODAL_PAGE_EQUATIONS)}>
-                  Открыть выражения
-              </Button>
-		</HorizontalScroll>
-    </div>    
+	<div>
+		<ModalRoot activeModal={this.state.activeModal}>
+			<ModalPage
+			  id={MODAL_PAGE_SYMBOLS}
+			  onClose={this.modalBack}
+			  header={
+				<ModalPageHeader
+				  left={<HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
+				>
+				  Символы
+				</ModalPageHeader>
+			  }
+			>
+			  
+			</ModalPage>
+
+			<ModalPage
+			  id={MODAL_PAGE_EQUATIONS}
+			  header={
+				<ModalPageHeader
+				  left={<HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
+				>
+				  Выражения
+				</ModalPageHeader>
+			  }
+			  onClose={this.modalBack}
+			  settlingHeight={80}
+			>
+			</ModalPage>
+
+       
+        </ModalRoot>
+      
+		<Group>
+			<Header level="secondary">Инструменты</Header>
+			
+			<HorizontalScroll>
+				<Button onClick={() => this.setActiveModal(MODAL_PAGE_SYMBOLS)}>
+					  S
+				</Button>
+				<Button onClick={() => this.setActiveModal(MODAL_PAGE_EQUATIONS)}>
+					  E
+				</Button>
+			</HorizontalScroll>
+        </Group>
+    </div>
     );
   }
 }
