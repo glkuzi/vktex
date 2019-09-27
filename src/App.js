@@ -16,7 +16,6 @@ function App () {
 		
 		<Scrolltex/>
 		<Inputtex/>
-		<Outputtex/>
 		<Menutex/>
       </Panel>
     </View>
