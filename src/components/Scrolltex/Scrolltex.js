@@ -1,6 +1,6 @@
 import React from 'react';
 import './Scrolltex.css';
-import { HorizontalScroll,  Group} from '@vkontakte/vkui';
+import { HorizontalScroll,  Group, Header} from '@vkontakte/vkui';
 
 const itemStyle = {
     
@@ -18,7 +18,8 @@ const itemStyle = {
 
 class Scrolltex extends React.Component {
    render() {
-     return  <Group style={{ paddingBottom: 8 }}> <HorizontalScroll>
+     return  <Group style={{ paddingBottom: 8 }}> 
+	 <Header level="secondary">Инструменты</Header><HorizontalScroll>
           <div style={{ display: 'flex' }}>
             <div style={{ ...itemStyle, paddingLeft: 4 }}>
               F
