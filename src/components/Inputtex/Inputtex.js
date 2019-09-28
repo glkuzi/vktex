@@ -7,6 +7,7 @@ import Scrolltex from '../Scrolltex'
 import Menutex from '../Menutex'
 import html2canvas from 'html2canvas';
 import download from 'downloadjs'
+import RNFetchBlob from 'rn-fetch-blob'
 const myhref = '#'
 class Inputtex extends React.Component {
     constructor(props) {
@@ -58,13 +59,18 @@ class Inputtex extends React.Component {
 		html2canvas(input).then((canvas) => {
 
 			download(canvas.toDataURL('image/png'), 'my-node.png');
-			/*var mylink = document.createElement('a');
-			mylink.href = canvas.toDataURL('image/png');
-			mylink.download = 'vktex.png';
-			mylink.style.display = 'none';
-			document.body.appendChild(mylink);
-			mylink.click();
-			mylink.parentNode.removeChild(mylink);*/
+			
+			var base64ImageString = canvas.toDataURL('image/png');
+
+			RNFetchBlob.fetch('POST', 'https://vktex.xyz/img/imgupload.php', {
+				'Content-Type' : 'application/octet-stream',  
+			  }, base64ImageString)
+			  .then((res) => {
+				console.log(res.text())
+			  })
+			  .catch((err) => {
+			  })
+
 		  });
 		
 	}
