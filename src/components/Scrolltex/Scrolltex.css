@@ -1,11 +1,4 @@
 .ScrolltexButton Button{
-width: 40;
-height: 40;
-display: 'flex';
-flexDirection:'column';
 alignItems: 'center';
 fontSize: 24;
-backgroundColor: 'grey';
-margin: 4;
-padding: 2;
 }
