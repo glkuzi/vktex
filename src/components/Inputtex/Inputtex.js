@@ -55,14 +55,14 @@ class Inputtex extends React.Component {
 		
 		const input = document.getElementById('ImageToDownload');
 		html2canvas(input).then((canvas) => {
-			var mylink = document.createElement('a');
+			var mylink = document.getElementById('testLink');
 			this.myhref = canvas.toDataURL('image/png');
-			console.log(this.myhref)
+			//console.log(this.myhref)
 			mylink.href = this.myhref;
 			mylink.download = 'vktex.png';
 			mylink.html = 'TestLink'
 			//mylink.style.display = 'none';
-			document.getElementById('testLink').appendChild(mylink);
+			//document.getElementById('testLink').appendChild(mylink);
 			//mylink.click();
 			//mylink.parentNode.removeChild(mylink);
 		  });
@@ -71,7 +71,7 @@ class Inputtex extends React.Component {
 	
     render() {
         return (
-            <div id="testLink">
+            <div>
 				<Scrolltex onTex={this.onTex}/>
 				<FormLayout onSubmit={this.handleSubmit}>
 					<label>
@@ -80,6 +80,7 @@ class Inputtex extends React.Component {
 				</FormLayout>
 				
 					<div id="ImageToDownload"><Div className="display-linebreak"><Latex>{this.state.value}</Latex></Div></div>
+					<a href="#" id="testLink">Test</a>
 				<Menutex downloadImage={this.downloadImage}/>
             </div>
         );
