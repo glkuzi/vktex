@@ -6,12 +6,13 @@
     "@vkontakte/icons": "^1.8.3",
     "@vkontakte/vk-connect": "^1.5.5",
     "@vkontakte/vkui": "^2.30.7",
+    "package.json": "^2.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.2",
-    "typescript": "^3.6.3",
+    "react-katex": "2.0.2",
     "react-latex": "1.4.0",
-    "react-katex": "2.0.2"
+    "react-scripts": "3.1.2",
+    "typescript": "^3.6.3"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -5,6 +5,8 @@ PanelHeader,FormLayout, ModalRoot, ModalPage, ModalPageHeader, Button, View, Pan
 import Icon24Cancel from '@vkontakte/icons/dist/24/cancel';
 import Icon24Done from '@vkontakte/icons/dist/24/done';
 import Icon24Dismiss from '@vkontakte/icons/dist/24/dismiss';
+
+import Latex from "react-latex";
 const MODAL_PAGE_SYMBOLS = 'symbols';
 const MODAL_PAGE_EQUATIONS = 'equations';
 
@@ -53,7 +55,9 @@ class Scrolltexmodal extends React.Component {
 				<ModalPageHeader
 				  left={<HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
 				>
-				  Символы
+				  
+					
+				  
 				</ModalPageHeader>
 			  }
 			>
@@ -80,12 +84,12 @@ class Scrolltexmodal extends React.Component {
 		<Group>
 			<Header level="secondary">Инструменты</Header>
 			
-			<HorizontalScroll>
+			<HorizontalScroll class="ScrolltexButton">
 				<Button onClick={() => this.setActiveModal(MODAL_PAGE_SYMBOLS)}>
-					  S
+					  <Latex>$\alpha$</Latex>
 				</Button>
 				<Button onClick={() => this.setActiveModal(MODAL_PAGE_EQUATIONS)}>
-					  E
+					  <Latex>$x^\alpha$</Latex>
 				</Button>
 			</HorizontalScroll>
         </Group>
@@ -97,16 +101,7 @@ class Scrolltexmodal extends React.Component {
 
 const itemStyle = {
     
-    width: 40,
-    height: 40,
-    display: 'flex',
-    flexDirection:
-    'column',
-    alignItems: 'center',
-    fontSize: 24,
-	backgroundColor: 'grey',
-	margin: 4,
-	padding: 2
+    
   };
 
 class Scrolltex extends React.Component {
