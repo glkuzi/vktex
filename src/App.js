@@ -12,7 +12,7 @@ function App () {
   return (
     <View activePanel="main">
       <Panel id="main">
-        <PanelHeader><Latex>$VK\TeX$</Latex></PanelHeader>
+        <PanelHeader><Latex>$V^K\TeX$</Latex></PanelHeader>
 		
 		<Scrolltex/>
 		<Inputtex/>
