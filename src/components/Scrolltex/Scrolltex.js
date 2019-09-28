@@ -10,7 +10,7 @@ import Latex from "react-latex";
 const MODAL_PAGE_SYMBOLS = 'symbols';
 const MODAL_PAGE_EQUATIONS = 'equations';
 
-class Scrolltexmodal extends React.Component {
+class Scrolltex extends React.Component {
   constructor(props) {
     super(props);
 
@@ -22,8 +22,8 @@ class Scrolltexmodal extends React.Component {
     this.modalBack = () => {
       this.setActiveModal(this.state.modalHistory[this.state.modalHistory.length - 2]);
     };
+	
   }
-
   setActiveModal(activeModal) {
     activeModal = activeModal || null;
     let modalHistory = this.state.modalHistory ? [...this.state.modalHistory] : [];
@@ -61,7 +61,7 @@ class Scrolltexmodal extends React.Component {
 			>
 			  <Group>
 					<Div> 
-						<TableSymbols data={['$\\alpha$', '$\\beta$', '$\\gamma$', '$\\delta$', '$\\epsilon$', '$\\varepsilon$', '$\\zeta$', '$\\eta$', '$\\theta$', '$\\vartheta$', '$\\iota$', '$\\kappa$', '$\\lambda$', '$\\mu$', '$\\nu$', '$\\xi$', '$\\pi$', '$\\varpi$', '$\\rho$', '$\\varrho$', '$\\sigma$', '$\\varsigma$', '$\\tau$', '$\\upsilon$', '$\\phi$', '$\\varphi$', '$\\chi$', '$\\psi$', '$\\omega$']}/>	
+						<TableSymbols onTex={this.props.onTex} data={['$\\alpha$', '$\\beta$', '$\\gamma$', '$\\delta$', '$\\epsilon$', '$\\varepsilon$', '$\\zeta$', '$\\eta$', '$\\theta$', '$\\vartheta$', '$\\iota$', '$\\kappa$', '$\\lambda$', '$\\mu$', '$\\nu$', '$\\xi$', '$\\pi$', '$\\varpi$', '$\\rho$', '$\\varrho$', '$\\sigma$', '$\\varsigma$', '$\\tau$', '$\\upsilon$', '$\\phi$', '$\\varphi$', '$\\chi$', '$\\psi$', '$\\omega$']}/>	
 					</Div>
 				</Group>
 			</ModalPage>
@@ -98,25 +98,6 @@ class Scrolltexmodal extends React.Component {
     </div>
     );
   }
-}
-
-
-const itemStyle = {
-    
-    
-  };
-
-class Scrolltex extends React.Component {
-   render() {
-     return  (
-	 
-	 
-        <Scrolltexmodal></Scrolltexmodal>  
-        
-		 
-		
-		)
-   }
 }
 
 

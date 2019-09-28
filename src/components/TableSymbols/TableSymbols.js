@@ -4,9 +4,7 @@ import Latex from "react-latex";
 
 
 class TableSymbols extends React.Component  {
-	handleClickTex(elem) {
-      console.log('объект:', elem);
-    }
+  
   render() {
 	    
         return (
@@ -16,7 +14,7 @@ class TableSymbols extends React.Component  {
                     {
                       this.props.data.map(elem=>{
                         return (
-							<button onClick={this.handleClickTex.bind(this, elem)}> 
+							<button onClick={this.props.onTex.bind(this, elem)}> 
 							
 								<Latex>{elem}</Latex>
 							</button>)
