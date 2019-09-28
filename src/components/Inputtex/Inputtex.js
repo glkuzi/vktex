@@ -7,8 +7,23 @@ import Scrolltex from '../Scrolltex'
 import Menutex from '../Menutex'
 import html2canvas from 'html2canvas';
 import download from 'downloadjs'
-import RNFetchBlob from 'rn-fetch-blob'
+import axios from 'axios';
+import uuid from 'react-uuid'
 const myhref = '#'
+
+function dataURLtoFile(dataurl, filename){
+	const arr = dataurl.split(',')
+	const mime = arr[0].match(/:(.*?);/)[1]
+	const bstr = atob(arr[1])
+	let n = bstr.length
+	const u8arr = new Uint8Array(n)
+	while (n) {
+	  u8arr[n] = bstr.charCodeAt(n)
+	  n -= 1 // to make eslint happy
+	}
+	return new File([u8arr], filename, { type: mime })
+}
+
 class Inputtex extends React.Component {
     constructor(props) {
         super(props);
@@ -50,7 +65,8 @@ class Inputtex extends React.Component {
 	
 	onTex(elem) {
         this.setState({value: this.InsertInCursor(elem)});
-    }
+	}
+	
 	
 	downloadImage() {
 		
@@ -60,16 +76,18 @@ class Inputtex extends React.Component {
 
 			download(canvas.toDataURL('image/png'), 'my-node.png');
 			
-			var base64ImageString = canvas.toDataURL('image/png');
+			var file = dataURLtoFile(canvas.toDataURL('image/png'), uuid() + '.png');
 
-			RNFetchBlob.fetch('POST', 'https://vktex.xyz/img/imgupload.php', {
-				'Content-Type' : 'application/octet-stream',  
-			  }, base64ImageString)
-			  .then((res) => {
-				console.log(res.text())
-			  })
-			  .catch((err) => {
-			  })
+			const data = new FormData()
+			data.append('img', file, file.name)
+
+			const config = {
+				headers: { 'Content-Type': 'multipart/form-data' }
+			}
+
+			axios.post('https://vktex.xyz/img/imgupload.php', data, config).then(response => {
+				console.log(response.data)
+			})
 
 		  });
 		
