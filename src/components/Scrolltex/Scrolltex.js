@@ -55,13 +55,13 @@ class Scrolltex extends React.Component {
 				<ModalPageHeader
 				  left={<HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
 				>
-								
+				Символы				
 				</ModalPageHeader>
 			  }
 			>
 			  <Group>
 					<Div> 
-						<TableSymbols onTex={this.props.onTex} data={['$\\alpha$', '$\\beta$', '$\\gamma$', '$\\delta$', '$\\epsilon$', '$\\varepsilon$', '$\\zeta$', '$\\eta$', '$\\theta$', '$\\vartheta$', '$\\iota$', '$\\kappa$', '$\\lambda$', '$\\mu$', '$\\nu$', '$\\xi$', '$\\pi$', '$\\varpi$', '$\\rho$', '$\\varrho$', '$\\sigma$', '$\\varsigma$', '$\\tau$', '$\\upsilon$', '$\\phi$', '$\\varphi$', '$\\chi$', '$\\psi$', '$\\omega$']}/>	
+						<TableSymbols onTex={this.props.onTex} data={[['$\\alpha$','\\alpha'], ['$\\beta$','\\beta']]}/>	
 					</Div>
 				</Group>
 			</ModalPage>
@@ -72,12 +72,17 @@ class Scrolltex extends React.Component {
 				<ModalPageHeader
 				  left={<HeaderButton onClick={this.modalBack}><Icon24Cancel /></HeaderButton>}
 				>
-				  Выражения
+				Выражения
 				</ModalPageHeader>
 			  }
 			  onClose={this.modalBack}
 			  settlingHeight={80}
 			>
+				<Group>
+					<Div> 
+						<TableSymbols onTex={this.props.onTex} data={[['$x^y$','^{}'], ['$x_y$','_{}']]}/>	
+					</Div>
+				</Group>
 			</ModalPage>
 
        

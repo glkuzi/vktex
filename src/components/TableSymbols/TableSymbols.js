@@ -14,9 +14,9 @@ class TableSymbols extends React.Component  {
                     {
                       this.props.data.map(elem=>{
                         return (
-							<button onClick={this.props.onTex.bind(this, elem)}> 
+							<button onClick={this.props.onTex.bind(this, elem[1])}> 
 							
-								<Latex>{elem}</Latex>
+								<Latex>{elem[0]}</Latex>
 							</button>)
                           })
                     }

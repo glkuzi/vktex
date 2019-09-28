@@ -27,7 +27,7 @@ class Inputtex extends React.Component {
     }
 	
 	onTex(elem) {
-        this.setState({value: this.state.value + elem.replace(/\$/g, "")});
+        this.setState({value: this.state.value + elem});
     }
     render() {
         return (
