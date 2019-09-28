@@ -9,7 +9,7 @@ class Inputtex extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ''
+            value: '$V^K\\TeX$'
         };
 
         this.handleChange = this.handleChange.bind(this);

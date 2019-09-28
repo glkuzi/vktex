@@ -2,6 +2,7 @@ import React from 'react';
 import './TableSymbols.css';
 import Latex from "react-latex";
 
+import { Button} from '@vkontakte/vkui';
 
 class TableSymbols extends React.Component  {
   
@@ -14,10 +15,10 @@ class TableSymbols extends React.Component  {
                     {
                       this.props.data.map(elem=>{
                         return (
-							<button onClick={this.props.onTex.bind(this, elem[1])}> 
+							<Button onClick={this.props.onTex.bind(this, elem[1])}> 
 							
 								<Latex>{elem[0]}</Latex>
-							</button>)
+							</Button>)
                           })
                     }
                 </div>

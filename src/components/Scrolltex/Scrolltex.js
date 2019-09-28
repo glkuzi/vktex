@@ -66,7 +66,7 @@ class Scrolltex extends React.Component {
 			  <Group>
 					<Div> 
 						<TableSymbols onTex={this.props.onTex} data={[['$\\alpha$','\\alpha'], ['$\\beta$','\\beta'],
-						['$\\gamma$'], ['$\\delta$','\\delta'], [ '$\\epsilon$','\\epsilon'], [ '$\\varepsilon$','\\varepsilon'],
+						['$\\gamma$','\\gamma'], ['$\\delta$','\\delta'], [ '$\\epsilon$','\\epsilon'], [ '$\\varepsilon$','\\varepsilon'],
 						['$\\zeta$','\\zeta'], [ '$\\eta$','\\eta'], [ '$\\theta$', '\\theta'], [ '$\\vartheta$','\\vartheta'],
 						['$\\iota$','\\iota'], [ '$\\kappa$','\\kappa'], [ '$\\lambda$','\\lambda'], [ '$\\mu$','\\mu'],
 						[ '$\\nu$','\\nu'], [ '$\\xi$','\\xi'], [ '$\\pi$','\\pi'], [ '$\\varpi$','\\varpi'], [ '$\\rho$','\\rho'],
