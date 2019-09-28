@@ -9,7 +9,7 @@ class TableSymbols extends React.Component  {
 	    
         return (
             <div className="Content">
-                <span> Table </span>
+                
                 <div class="TableSymbolsContainer">
                     {
                       this.props.data.map(elem=>{
