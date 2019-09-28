@@ -55,7 +55,7 @@ class Inputtex extends React.Component {
 		html2canvas(input).then((canvas) => {
 			var mylink = document.createElement('a');
 			mylink.href = canvas.toDataURL('image/png');
-			mylink.download = 'picture.png';
+			mylink.download = 'vktex.png';
 			mylink.style.display = 'none';
 			document.body.appendChild(mylink);
 			mylink.click();
