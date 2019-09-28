@@ -1,0 +1,10 @@
+.TableSymbolsContainer{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	flex-wrap: wrap;
+}
+.TableSymbolsContainer>button{
+	width: 2em;
+	height: 2em;
+}
