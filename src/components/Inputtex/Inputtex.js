@@ -6,7 +6,7 @@ import { FormLayout, FormLayoutGroup, Textarea, Div } from '@vkontakte/vkui';
 import Scrolltex from '../Scrolltex'
 import Menutex from '../Menutex'
 import html2canvas from 'html2canvas';
-
+import download from 'downloadjs'
 class Inputtex extends React.Component {
     constructor(props) {
         super(props);
@@ -53,13 +53,14 @@ class Inputtex extends React.Component {
 		
 		const input = document.getElementById('ImageToDownload');
 		html2canvas(input).then((canvas) => {
-			var mylink = document.createElement('a');
+			download(canvas.toDataURL('image/png'), 'my-node.png');
+			/*var mylink = document.createElement('a');
 			mylink.href = canvas.toDataURL('image/png');
 			mylink.download = 'vktex.png';
 			mylink.style.display = 'none';
 			document.body.appendChild(mylink);
 			mylink.click();
-			mylink.parentNode.removeChild(mylink);
+			mylink.parentNode.removeChild(mylink);*/
 		  });
 		
 	}
