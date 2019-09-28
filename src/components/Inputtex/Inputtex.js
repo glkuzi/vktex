@@ -5,6 +5,8 @@ import 'katex/dist/katex.min.css';
 import { FormLayout, FormLayoutGroup, Textarea, Div } from '@vkontakte/vkui';
 import Scrolltex from '../Scrolltex'
 import Menutex from '../Menutex'
+import html2canvas from 'html2canvas';
+
 class Inputtex extends React.Component {
     constructor(props) {
         super(props);
@@ -46,6 +48,21 @@ class Inputtex extends React.Component {
         this.setState({value: this.InsertInCursor(elem)});
     }
 	
+	downloadImage() {
+		
+		
+		const input = document.getElementById('ImageToDownload');
+		html2canvas(input).then((canvas) => {
+			var mylink = document.createElement('a');
+			mylink.href = canvas.toDataURL('image/png');
+			mylink.download = 'picture.png';
+			mylink.style.display = 'none';
+			document.body.appendChild(mylink);
+			mylink.click();
+			mylink.parentNode.removeChild(mylink);
+		  });
+		
+	}
 	
     render() {
         return (
@@ -56,8 +73,9 @@ class Inputtex extends React.Component {
 						<Textarea id="MainArea" value={this.state.value} onChange={this.handleChange} placeholder={"Введите формулу"} />
 					</label>
 				</FormLayout>
-					<Div className="display-linebreak"><Latex>{this.state.value}</Latex></Div>
-				<Menutex/>
+				
+					<div id="ImageToDownload"><Div className="display-linebreak"><Latex>{this.state.value}</Latex></Div></div>
+				<Menutex downloadImage={this.downloadImage}/>
             </div>
         );
     }

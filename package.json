@@ -6,6 +6,7 @@
     "@vkontakte/icons": "^1.8.3",
     "@vkontakte/vk-connect": "^1.5.5",
     "@vkontakte/vkui": "^2.30.7",
+    "html2canvas": "^1.0.0-rc.5",
     "package.json": "^2.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
