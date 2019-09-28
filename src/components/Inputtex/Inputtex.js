@@ -57,19 +57,21 @@ class Inputtex extends React.Component {
 		html2canvas(input).then((canvas) => {
 			var mylink = document.createElement('a');
 			this.myhref = canvas.toDataURL('image/png');
+			console.log(this.myhref)
 			mylink.href = this.myhref;
 			mylink.download = 'vktex.png';
-			mylink.style.display = 'none';
-			document.body.appendChild(mylink);
-			mylink.click();
-			mylink.parentNode.removeChild(mylink);
+			mylink.html = 'TestLink'
+			//mylink.style.display = 'none';
+			document.getElementById('testLink').appendChild(mylink);
+			//mylink.click();
+			//mylink.parentNode.removeChild(mylink);
 		  });
 		
 	}
 	
     render() {
         return (
-            <div>
+            <div id="testLink">
 				<Scrolltex onTex={this.onTex}/>
 				<FormLayout onSubmit={this.handleSubmit}>
 					<label>
