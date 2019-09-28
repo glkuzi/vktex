@@ -61,7 +61,13 @@ class Scrolltex extends React.Component {
 			>
 			  <Group>
 					<Div> 
-						<TableSymbols onTex={this.props.onTex} data={[['$\\alpha$','\\alpha'], ['$\\beta$','\\beta']]}/>	
+						<TableSymbols onTex={this.props.onTex} data={[['$\\alpha$','\\alpha'], ['$\\beta$','\\beta'],
+						['$\\gamma$'], ['$\\delta$','\\delta'], [ '$\\epsilon$','\\epsilon'], [ '$\\varepsilon$','\\varepsilon'],
+						['$\\zeta$','\\zeta'], [ '$\\eta$','\\eta'], [ '$\\theta$', '\\theta'], [ '$\\vartheta$','\\vartheta'],
+						['$\\iota$','\\iota'], [ '$\\kappa$','\\kappa'], [ '$\\lambda$','\\lambda'], [ '$\\mu$','\\mu'],
+						[ '$\\nu$','\\nu'], [ '$\\xi$','\\xi'], [ '$\\pi$','\\pi'], [ '$\\varpi$','\\varpi'], [ '$\\rho$','\\rho'],
+						[ '$\\varrho$','\\varrho'], [ '$\\sigma$','\\sigma'], [ '$\\varsigma$','\\varsigma'], [ '$\\tau$','\\tau'],
+						[ '$\\upsilon$','\\upsilon'], [ '$\\phi$','\\phi'], [ '$\\varphi$','\\varphi'], [ '$\\chi$','\\chi'], [ '$\\psi$','\\psi'], [ '$\\omega$','\\omega']]}/>	
 					</Div>
 				</Group>
 			</ModalPage>
@@ -80,7 +86,14 @@ class Scrolltex extends React.Component {
 			>
 				<Group>
 					<Div> 
-						<TableSymbols onTex={this.props.onTex} data={[['$x^y$','^{}'], ['$x_y$','_{}']]}/>	
+						<TableSymbols onTex={this.props.onTex} data={[
+						['$x^a$','^{}'], ['$x_a$','_{}'], ['$\\tfrac{x}{a}$','\\tfrac{}{}'], ['$\\frac{x}{a}$','\\frac{}{}'],
+						['$x_{a}^{b}$','_{}^{}'], ['$\\frac{\\partial }{\\partial x}$','$\\frac{\\partial }{\\partial x}'], ['${x_{a}}^{b}$','{_{}}^{}'], ['$_{a}^{b}\\textrm{C}$','_{}^{}\\textrm{}'],
+						['$\\frac{\\partial^2 }{\\partial x^2}$','\\frac{\\partial^2 }{\\partial x^2}'], ['$\\frac{\\mathrm{d} }{\\mathrm{d} x}$','\\frac{\\mathrm{d} }{\\mathrm{d} x}'], ['$\\int $','\\int '], ['$\\oint $','\\oint '],
+						['$\\oint_{a}^{b}$','\\oint_{}^{}'], ['$\\iint_{a}^{b}$','\\iint_{}^{}'], ['$\\bigcap $','\\bigcap '], ['$\\bigcap_{a}^{b}$','\\bigcap_{}^{}'],
+						['$\\lim\\limits_{x \\to 0}$','\\lim\\limits_{x \\to 0}'],['$\\sum $','\\sum '],['$\\sum_{a}^{b}$','\\sum_{}^{}'],['$\\sqrt{x}$','\\sqrt{}'],['$\\sqrt[n]{x}$','\\sqrt[]{}'],
+						['$\\prod $','\\prod '],['$\\prod_{a}^{b}$','\\prod_{}^{}'],['$\\coprod $','\\coprod'],['$\\coprod_{a}^{b}$','\\coprod_{}^{}']
+						]}/>	
 					</Div>
 				</Group>
 			</ModalPage>
