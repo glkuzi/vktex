@@ -26,16 +26,34 @@ class Inputtex extends React.Component {
         event.preventDefault();
     }
 	
+	InsertInCursor(elem) {
+		var CurrText = this.state.value;
+		
+		var myElement = document.getElementById("MainArea");
+		var startPosition = myElement.selectionStart;
+        var endPosition = myElement.selectionEnd;
+		if(startPosition == endPosition){
+            var Part1 = CurrText.slice(0,startPosition);
+			var Part2 =CurrText.slice(startPosition);
+        }else{
+			var Part1 = CurrText.slice(0,startPosition);
+			var Part2 =CurrText.slice(endPosition);
+        }
+		return Part1 + elem + Part2
+	}
+	
 	onTex(elem) {
-        this.setState({value: this.state.value + elem});
+        this.setState({value: this.InsertInCursor(elem)});
     }
+	
+	
     render() {
         return (
             <div>
 				<Scrolltex onTex={this.onTex}/>
 				<FormLayout onSubmit={this.handleSubmit}>
 					<label>
-						<Textarea value={this.state.value} onChange={this.handleChange} placeholder={"Введите формулу"} />
+						<Textarea id="MainArea" value={this.state.value} onChange={this.handleChange} placeholder={"Введите формулу"} />
 					</label>
 				</FormLayout>
 					<Div className="display-linebreak"><Latex>{this.state.value}</Latex></Div>
