@@ -43,7 +43,11 @@ class Scrolltex extends React.Component {
   };
 
   render() {
-   
+   const scrolltexButton = {
+    margin:4,
+	width: 40,
+	height: 40,
+  };
 
     return (
 	<div>
@@ -104,11 +108,11 @@ class Scrolltex extends React.Component {
 		<Group>
 			<Header level="secondary">Инструменты</Header>
 			
-			<HorizontalScroll class="ScrolltexButton">
-				<Button onClick={() => this.setActiveModal(MODAL_PAGE_SYMBOLS)}>
+			<HorizontalScroll style={{paddingLeft:4}}>
+				<Button style={scrolltexButton} onClick={() => this.setActiveModal(MODAL_PAGE_SYMBOLS)}>
 					  <Latex>$\alpha$</Latex>
 				</Button>
-				<Button onClick={() => this.setActiveModal(MODAL_PAGE_EQUATIONS)}>
+				<Button style={scrolltexButton} onClick={() => this.setActiveModal(MODAL_PAGE_EQUATIONS)}>
 					  <Latex>$x^\alpha$</Latex>
 				</Button>
 			</HorizontalScroll>
