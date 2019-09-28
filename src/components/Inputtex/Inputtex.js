@@ -81,6 +81,7 @@ class Inputtex extends React.Component {
 			const data = new FormData()
 			data.append('img', file, file.name)
 
+			
 			const config = {
 				headers: { 'Content-Type': 'multipart/form-data' }
 			}
