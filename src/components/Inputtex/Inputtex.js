@@ -149,6 +149,10 @@ class Inputtex extends React.Component {
 				}
 			}
 		}
+		else {
+			console.log(e.data.error_type)
+			console.log(e.data)
+		}
 	}
 	
     render() {
