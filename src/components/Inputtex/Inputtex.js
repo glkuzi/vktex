@@ -107,6 +107,8 @@ class Inputtex extends React.Component {
 						}
 					}
 
+					console.log('Bla!')
+
 					const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 
 					axios.post(PROXY_URL + 'https://vktex.xyz/img/imgupload.php', data, config).
