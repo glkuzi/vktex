@@ -21,7 +21,7 @@ class Inputtex extends React.Component {
 		this.hashStr = '';
 		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
 
-		let testing = url.split('#').slice(-1).pop();
+		//let testing = url.split('#').slice(-1).pop();
 		/*
 		if (typeof testing === 'undefined'){
 			this.currentKey = '';
@@ -32,7 +32,7 @@ class Inputtex extends React.Component {
 		 */
 		this.currentKey = url.replace(appLink + '#', '');
 		console.log(this.currentKey);
-		console.log(testing);
+		//console.log(testing);
 		this.restoredValue = '$V^K\\TeX$';
 		if (this.currentKey == ''){
 			this.state = {
