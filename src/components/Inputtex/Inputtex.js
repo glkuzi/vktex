@@ -9,6 +9,7 @@ import html2canvas from 'html2canvas';
 import download from 'downloadjs'
 import axios from 'axios';
 import uuid from 'react-uuid'
+import connect from '@vkontakte/vk-connect'
 const myhref = '#'
 
 function dataURLtoFile(dataurl, filename){
@@ -74,47 +75,44 @@ class Inputtex extends React.Component {
 		const input = document.getElementById('ImageToDownload');
 		html2canvas(input).then((canvas) => {
 
-			download(canvas.toDataURL('image/png'), 'my-node.png');
-			
-			let data = new FormData()
+			var isMobileApp = connect.isWebView()
 
-			canvas.toBlob(function (blob){
-				data.append('img', blob, uuid() + '.png')
+			if (isMobileApp){
+				
+				let data = new FormData()
 
-				const config = {
-					headers: { 
-						'Content-Type': 'multipart/form-data'
-					}
-				}
+				canvas.toBlob(function (blob){
+					data.append('img', blob, uuid() + '.png')
 
-				const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
-
-				axios.post(PROXY_URL + 'https://vktex.xyz/img/imgupload.php', data, config).
-				then(response => {
-					if(response.status == 200){
-						console.log(response.data)
-					} else {
-						console.log(response.status)
-					}
-					}).catch(error => {
-						console.log(error)
-						if (error.response) {
-							console.log("--------------------------------------------------")
-							console.log(error.response.data);
-							console.log(error.response.status);
-							console.log(error.response.headers);
-						} else if (error.request) {
-							console.log("*************************")
-							console.log(error.request);
-						} else {
-							console.log("++++++++++++++++++++++++")
-							console.log('Error', error.message);
+					const config = {
+						headers: { 
+							'Content-Type': 'multipart/form-data'
 						}
-						console.log(error.config);
-					})
-				});
+					}
 
-			});
+					const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+
+					axios.post(PROXY_URL + 'https://vktex.xyz/img/imgupload.php', data, config).
+					then(response => {
+						if(response.status == 200){
+							connect.send("VKWebAppShowImages", { 
+								images: [
+									response.data['url']
+								]
+							})
+							
+						} else {
+							console.log(response.status)
+						}
+						}).catch(error => {
+							console.log(error)
+						})
+					});
+
+			} else{
+				download(canvas.toDataURL('image/png'), 'my-node.png');
+			}
+		});
 		
 	}
 	
