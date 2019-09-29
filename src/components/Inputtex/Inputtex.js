@@ -149,7 +149,7 @@ class Inputtex extends React.Component {
 				}
 			}
 		}
-		else {
+		if (e.type == "VKWebAppStorageGetFailed"){
 			console.log(e.data.error_type)
 			console.log(e.data)
 		}
