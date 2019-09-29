@@ -14,23 +14,41 @@ const appLink = "https://vk.com/app7150582";
 class Inputtex extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            value: '$V^K\\TeX$'
-        };
+		let url = window.location.href;
+		this.hashStr = '';
+		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
+		this.currentKey = url.replace(appLink + '#', '');
+		this.restoredValue = '$V^K\\TeX$';
+		if (this.currentKey == ''){
+			this.state = {
+				value: '$V^K\\TeX$'
+			};
+		}
+		else{
+			connect.subscribe((e) => this.parseHash(e));
+			connect.send("VKWebAppStorageGet", {"keys": [this.currentKey], "global": true});
+			this.state = {
+				value: this.restoredValue
+			};
+		}
 
         this.hash = {
         	value: 0
 		};
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 		this.onTex = this.onTex.bind(this);
 		this.shareApp = this.shareApp.bind(this);
+		this.parseHash = this.parseHash.bind(this);
     }
 
     handleChange(event) {
         this.setState({value: event.target.value});
         this.hash.value = Math.floor(Math.random() * maxHash)
-		connect.send("VKWebAppSetLocation", {"location": this.hash.value.toString()});
+		this.hashStr = this.state.value
+		//connect.send("VKWebAppSetLocation", {"location": this.hash.value.toString()});
+		connect.send("VKWebAppSetLocation", {"location": this.hashStr});
     }
 
     handleSubmit(event) {
@@ -75,8 +93,26 @@ class Inputtex extends React.Component {
 	}
 
 	shareApp(){
-    	connect.send("VKWebAppShare", {"link": appLink + "#" + this.hash.value.toString()});
-    	//console.log(appLink + "#" + this.hash.value.toString());
+    	//connect.send("VKWebAppShare", {"link": appLink + "#" + this.hash.value.toString()});
+		connect.send("VKWebAppShare", {"link": appLink + '#' + this.hashStr});
+		connect.send("VKWebAppStorageSet", {"key": this.hashStr.replace(/ /g, '%20'), "value": this.hashStr});
+    	//console.log(appLink + '#' + this.hashStr.replace(/ /g, '%20'));
+    	//var url = window.location.href;
+		//var url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
+		//var currentKey = url.replace(appLink + '#', '');
+    	//console.log(url.replace(appLink + '#', ''));
+		//console.log(this.currentKey);
+	}
+
+	parseHash(e){
+    	if (e.type == "VKWebAppStorageGetResult"){
+    		let restoredKeys = e.data.keys;
+			for (let x in restoredKeys){
+				if (x.key == this.currentKey){
+					this.restoredValue = x.value;
+				}
+			}
+		}
 	}
 	
     render() {
