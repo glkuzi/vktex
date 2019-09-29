@@ -160,11 +160,12 @@ class Inputtex extends React.Component {
 		console.log(e);
 		if (e.detail.type.toString() == "VKWebAppStorageGetResult"){
 			this.restoredKeys = e.detail.data.keys;
-			for (let x in this.restoredKeys){
-				if (x.key == this.currentKey){
-					this.restoredValue = x.value;
+			restoredKeys.forEach(function(item, i, arr) {
+			  //console.log(item.key);
+			  if (item.key == this.currentKey){
+					this.restoredValue = item.value;
 				}
-			}
+			});
 		}
 		if (e.detail.type.toString() == "VKWebAppStorageGetFailed"){
 			console.log(e.detail.data.error_type)
