@@ -7,6 +7,25 @@ import { FormLayout, FormLayoutGroup, Textarea, Div } from '@vkontakte/vkui';
 import Scrolltex from '../Scrolltex'
 import Menutex from '../Menutex'
 import html2canvas from 'html2canvas';
+import download from 'downloadjs'
+import axios from 'axios';
+import uuid from 'react-uuid'
+import connect from '@vkontakte/vk-connect'
+const myhref = '#'
+
+function dataURLtoFile(dataurl, filename){
+	const arr = dataurl.split(',')
+	const mime = arr[0].match(/:(.*?);/)[1]
+	const bstr = atob(arr[1])
+	let n = bstr.length
+	const u8arr = new Uint8Array(n)
+	while (n) {
+	  u8arr[n] = bstr.charCodeAt(n)
+	  n -= 1 // to make eslint happy
+	}
+	return new File([u8arr], filename, { type: mime })
+}
+
 
 const maxHash = 1000000;
 const appLink = "https://vk.com/app7150582";
@@ -26,7 +45,9 @@ class Inputtex extends React.Component {
 		this.onTex = this.onTex.bind(this);
 		this.shareApp = this.shareApp.bind(this);
     }
-
+	
+	
+	
     handleChange(event) {
         this.setState({value: event.target.value});
         this.hash.value = Math.floor(Math.random() * maxHash)
@@ -56,21 +77,52 @@ class Inputtex extends React.Component {
 	
 	onTex(elem) {
         this.setState({value: this.InsertInCursor(elem)});
-    }
+	}
+	
 	
 	downloadImage() {
 		
-		
 		const input = document.getElementById('ImageToDownload');
 		html2canvas(input).then((canvas) => {
-			var mylink = document.createElement('a');
-			mylink.href = canvas.toDataURL('image/png');
-			mylink.download = 'vktex.png';
-			mylink.style.display = 'none';
-			document.body.appendChild(mylink);
-			mylink.click();
-			mylink.parentNode.removeChild(mylink);
-		  });
+
+			var isMobileApp = connect.isWebView()
+
+			if (isMobileApp){
+				
+				let data = new FormData()
+
+				canvas.toBlob(function (blob){
+					data.append('img', blob, uuid() + '.png')
+
+					const config = {
+						headers: { 
+							'Content-Type': 'multipart/form-data'
+						}
+					}
+
+					const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
+
+					axios.post(PROXY_URL + 'https://vktex.xyz/img/imgupload.php', data, config).
+					then(response => {
+						if(response.status == 200){
+							connect.send("VKWebAppShowImages", { 
+								images: [
+									response.data['url']
+								]
+							})
+							
+						} else {
+							console.log(response.status)
+						}
+						}).catch(error => {
+							console.log(error)
+						})
+					});
+
+			} else{
+				download(canvas.toDataURL('image/png'), 'my-node.png');
+			}
+		});
 		
 	}
 
