@@ -159,7 +159,7 @@ class Inputtex extends React.Component {
 	parseHash(e){
 		console.log(e);
 		if (e.detail.type.toString() == "VKWebAppStorageGetResult"){
-			this.restoredKeys = e.data.keys;
+			this.restoredKeys = e.detail.data.keys;
 			for (let x in this.restoredKeys){
 				if (x.key == this.currentKey){
 					this.restoredValue = x.value;
@@ -167,8 +167,8 @@ class Inputtex extends React.Component {
 			}
 		}
 		if (e.detail.type.toString() == "VKWebAppStorageGetFailed"){
-			console.log(e.data.error_type)
-			console.log(e.data)
+			console.log(e.detail.data.error_type)
+			console.log(e.detail.data)
 		}
 	}
 	
