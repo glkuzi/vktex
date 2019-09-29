@@ -10,7 +10,6 @@ import html2canvas from 'html2canvas';
 import download from 'downloadjs'
 import axios from 'axios';
 import uuid from 'react-uuid'
-import connect from '@vkontakte/vk-connect'
 const myhref = '#'
 const maxHash = 1000000;
 const appLink = "https://vk.com/app7150582";
