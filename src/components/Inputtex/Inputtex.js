@@ -21,7 +21,7 @@ class Inputtex extends React.Component {
 		this.hashStr = '';
 		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
 
-		let testing = url.split('#')[1];
+		let testing = url.toString().split('#')[1];
 
 		if (typeof testing === 'undefined'){
 			this.currentKey = '';
