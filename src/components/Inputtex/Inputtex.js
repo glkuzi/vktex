@@ -24,6 +24,7 @@ function dataURLtoFile(dataurl, filename){
 	return new File([u8arr], filename, { type: mime })
 }
 
+
 class Inputtex extends React.Component {
     constructor(props) {
         super(props);
@@ -70,27 +71,50 @@ class Inputtex extends React.Component {
 	
 	downloadImage() {
 		
-		
 		const input = document.getElementById('ImageToDownload');
 		html2canvas(input).then((canvas) => {
 
 			download(canvas.toDataURL('image/png'), 'my-node.png');
 			
-			var file = dataURLtoFile(canvas.toDataURL('image/png'), uuid() + '.png');
+			let data = new FormData()
 
-			const data = new FormData()
-			data.append('img', file, file.name)
+			canvas.toBlob(function (blob){
+				data.append('img', blob, uuid() + '.png')
 
-			
-			const config = {
-				headers: { 'Content-Type': 'multipart/form-data' }
-			}
+				const config = {
+					headers: { 
+						'Content-Type': 'multipart/form-data'
+					}
+				}
 
-			axios.post('https://vktex.xyz/img/imgupload.php', data, config).then(response => {
-				console.log(response.data)
-			})
+				const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 
-		  });
+				axios.post(PROXY_URL + 'https://vktex.xyz/img/imgupload.php', data, config).
+				then(response => {
+					if(response.status == 200){
+						console.log(response.data)
+					} else {
+						console.log(response.status)
+					}
+					}).catch(error => {
+						console.log(error)
+						if (error.response) {
+							console.log("--------------------------------------------------")
+							console.log(error.response.data);
+							console.log(error.response.status);
+							console.log(error.response.headers);
+						} else if (error.request) {
+							console.log("*************************")
+							console.log(error.request);
+						} else {
+							console.log("++++++++++++++++++++++++")
+							console.log('Error', error.message);
+						}
+						console.log(error.config);
+					})
+				});
+
+			});
 		
 	}
 	
