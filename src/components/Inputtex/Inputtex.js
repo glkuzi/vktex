@@ -40,7 +40,7 @@ class Inputtex extends React.Component {
 			console.log('empty');
 		}
 		else{
-			this.currentKey
+			
 			connect.subscribe((el) => this.parseHash(el));
 			console.log(this.currentKey);
 			connect.send("VKWebAppStorageGet", {"keys": [this.currentKey.toString()], "global": true});
