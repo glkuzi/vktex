@@ -2,10 +2,14 @@ import React from 'react';
 import './Inputtex.css';
 import Latex from "react-latex";
 import 'katex/dist/katex.min.css';
+import connect from '@vkontakte/vk-connect'
 import { FormLayout, FormLayoutGroup, Textarea, Div } from '@vkontakte/vkui';
 import Scrolltex from '../Scrolltex'
 import Menutex from '../Menutex'
 import html2canvas from 'html2canvas';
+
+const maxHash = 1000000;
+const appLink = "https://vk.com/app7150582";
 
 class Inputtex extends React.Component {
     constructor(props) {
@@ -14,6 +18,7 @@ class Inputtex extends React.Component {
             value: '$V^K\\TeX$'
         };
 
+        this.hash = 0;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 		this.onTex = this.onTex.bind(this);
@@ -21,6 +26,8 @@ class Inputtex extends React.Component {
 
     handleChange(event) {
         this.setState({value: event.target.value});
+        this.hash = Math.floor(Math.random() * maxHash)
+		connect.send("VKWebAppSetLocation", {"location": this.hash});
     }
 
     handleSubmit(event) {
@@ -63,6 +70,10 @@ class Inputtex extends React.Component {
 		  });
 		
 	}
+
+	shareApp(){
+    	connect.send("VKWebAppShare", {"link": appLink + "#" + this.hash});
+	}
 	
     render() {
         return (
@@ -74,7 +85,7 @@ class Inputtex extends React.Component {
 					</label>
 				</FormLayout>
 				
-					<div id="ImageToDownload"><Div className="display-linebreak"><Latex>{this.state.value}</Latex></Div></div>
+					<Div id="ImageToDownload"><Div className="display-linebreak"><Latex displayMode={true}>{this.state.value}</Latex></Div></Div>
 				<Menutex downloadImage={this.downloadImage}/>
             </div>
         );

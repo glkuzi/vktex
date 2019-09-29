@@ -8,7 +8,7 @@ class Menutex extends React.Component {
      return (
 	 <Tabbar>
           <TabbarItem
-            text="Экспорт"
+            text="Экспорт" onClick={this.props.shareApp}
           ><Icon24ShareExternal /></TabbarItem>
           <TabbarItem
             text="Скачать" onClick={this.props.downloadImage.bind(this)}
