@@ -28,7 +28,7 @@ class Inputtex extends React.Component {
 			};
 		}
 		else{
-			connect.subscribe((e) => this.parseHash(e));
+			connect.subscribe((el) => this.parseHash(el));
 			connect.send("VKWebAppStorageGet", {"keys": [this.currentKey], "global": true});
 			this.state = {
 				value: this.restoredValue
@@ -130,7 +130,7 @@ class Inputtex extends React.Component {
 
 	shareApp(){
 		//connect.send("VKWebAppShare", {"link": appLink + "#" + this.hash.value.toString()});
-		connect.send("VKWebAppShare", {"link": appLink + '#' + this.hashStr});
+		connect.send("VKWebAppShare", {"link": appLink + '#' + this.hash.value.toString()});
 		connect.send("VKWebAppStorageSet", {"key": this.hash.value.toString(), "value": this.hashStr, "global": true});
 		//console.log(appLink + '#' + this.hashStr.replace(/ /g, '%20'));
 		//var url = window.location.href;
