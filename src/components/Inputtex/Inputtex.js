@@ -20,12 +20,25 @@ class Inputtex extends React.Component {
 		let url = window.location.href;
 		this.hashStr = '';
 		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
+
+		let testing = url.split('#').slice(-1).pop();
+		/*
+		if (typeof testing === 'undefined'){
+			this.currentKey = '';
+		}
+		else{
+			this.currentKey = testing;
+		}
+		 */
 		this.currentKey = url.replace(appLink + '#', '');
+		console.log(this.currentKey);
+		console.log(testing);
 		this.restoredValue = '$V^K\\TeX$';
-		if (this.currentKey == ''){
+		if (this.currentKey === ''){
 			this.state = {
 				value: '$V^K\\TeX$'
 			};
+			console.log('empty');
 		}
 		else{
 			connect.subscribe((el) => this.parseHash(el));
@@ -109,7 +122,7 @@ class Inputtex extends React.Component {
 
 					axios.post(PROXY_URL + 'https://vktex.xyz/img/imgupload.php', data, config).
 					then(response => {
-						if(response.status == 200){
+						if(response.status === 200){
 							connect.send("VKWebAppShowImages", { 
 								images: [
 									response.data['url']
@@ -144,15 +157,16 @@ class Inputtex extends React.Component {
 	}
 
 	parseHash(e){
-		if (e.type == "VKWebAppStorageGetResult"){
+		console.log(e.detail.type);
+		if (e.type === "VKWebAppStorageGetResult"){
 			let restoredKeys = e.data.keys;
 			for (let x in restoredKeys){
-				if (x.key == this.currentKey){
+				if (x.key === this.currentKey){
 					this.restoredValue = x.value;
 				}
 			}
 		}
-		if (e.type == "VKWebAppStorageGetFailed"){
+		if (e.type === "VKWebAppStorageGetFailed"){
 			console.log(e.data.error_type)
 			console.log(e.data)
 		}
