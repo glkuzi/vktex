@@ -13,21 +13,22 @@ import uuid from 'react-uuid';
 const myhref = '#';
 const maxHash = 1000000;
 const appLink = "https://vk.com/app7150582";
+const url = '''
 
 class Inputtex extends React.Component {
 	constructor(props) {
 		super(props);
-		this.url = window.location.href;
+		url = window.location.href;
 		this.hashStr = '';
 		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
-		console.log(this.url);
-		let testing = this.url.toString().split('#')[1];
+		console.log(url);
+		this.testing = url.toString().split('#')[1];
 
-		if (typeof testing === 'undefined'){
+		if (typeof this.testing === 'undefined'){
 			this.currentKey = '';
 		}
 		else{
-			this.currentKey = testing;
+			this.currentKey = this.testing;
 		}
 
 		//this.currentKey = url.replace(appLink + '#', '');
