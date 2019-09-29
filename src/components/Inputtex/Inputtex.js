@@ -17,7 +17,7 @@ const appLink = "https://vk.com/app7150582";
 class Inputtex extends React.Component {
 	constructor(props) {
 		super(props);
-		let url = window.location.href;
+		var url = window.location.href;
 		this.hashStr = '';
 		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
 		console.log(url);
