@@ -13,17 +13,15 @@ import uuid from 'react-uuid';
 const myhref = '#';
 const maxHash = 1000000;
 const appLink = "https://vk.com/app7150582";
-const url = '''
+
 
 class Inputtex extends React.Component {
 	constructor(props) {
+		//newconsole = document.getElementById('root').;
 		super(props);
-		url = window.location.href;
-		this.hashStr = '';
-		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
-		console.log(url);
-		this.testing = url.toString().split('#')[1];
-
+		
+		this.url = document.location.hash
+		this.testing = this.url.slice(1)
 		if (typeof this.testing === 'undefined'){
 			this.currentKey = '';
 		}
@@ -33,7 +31,7 @@ class Inputtex extends React.Component {
 
 		//this.currentKey = url.replace(appLink + '#', '');
 		console.log(this.currentKey);
-		console.log(testing);
+		console.log(this.testing);
 		this.restoredValue = '$V^K\\TeX$';
 		if (this.currentKey == ''){
 			this.state = {
@@ -176,6 +174,7 @@ class Inputtex extends React.Component {
     render() {
         return (
             <div>
+			<p id="testP"></p>
 				<Scrolltex onTex={this.onTex}/>
 				<FormLayout onSubmit={this.handleSubmit}>
 					<label>
