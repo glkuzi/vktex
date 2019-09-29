@@ -20,7 +20,14 @@ class Inputtex extends React.Component {
 		let url = window.location.href;
 		this.hashStr = '';
 		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
-		this.currentKey = url.split('#').slice(-1).pop();//url.replace(appLink + '#', '');
+		let testing = url.split('#').slice(-1).pop()
+		if (typeof testing === 'undefined'){
+			this.currentKey = '';
+		}
+		else{
+			this.currentKey = testing;
+		}
+		//this.currentKey = url.split('#').slice(-1).pop();//url.replace(appLink + '#', '');
 		console.log(this.currentKey);
 		this.restoredValue = '$V^K\\TeX$';
 		if (this.currentKey === ''){
