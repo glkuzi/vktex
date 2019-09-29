@@ -34,7 +34,7 @@ class Inputtex extends React.Component {
 		console.log(this.currentKey);
 		console.log(testing);
 		this.restoredValue = '$V^K\\TeX$';
-		if (this.currentKey === ''){
+		if (this.currentKey == ''){
 			this.state = {
 				value: '$V^K\\TeX$'
 			};
@@ -122,7 +122,7 @@ class Inputtex extends React.Component {
 
 					axios.post(PROXY_URL + 'https://vktex.xyz/img/imgupload.php', data, config).
 					then(response => {
-						if(response.status === 200){
+						if(response.status == 200){
 							connect.send("VKWebAppShowImages", { 
 								images: [
 									response.data['url']
@@ -158,15 +158,15 @@ class Inputtex extends React.Component {
 
 	parseHash(e){
 		console.log(e.detail.type);
-		if (e.type === "VKWebAppStorageGetResult"){
+		if (e.type == "VKWebAppStorageGetResult"){
 			let restoredKeys = e.data.keys;
 			for (let x in restoredKeys){
-				if (x.key === this.currentKey){
+				if (x.key == this.currentKey){
 					this.restoredValue = x.value;
 				}
 			}
 		}
-		if (e.type === "VKWebAppStorageGetFailed"){
+		if (e.type == "VKWebAppStorageGetFailed"){
 			console.log(e.data.error_type)
 			console.log(e.data)
 		}
