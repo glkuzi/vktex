@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import connect from '@vkontakte/vk-connect'
 
-/*
+
 connect.subscribe((e) => {
     switch (e.detail.type) {
         case 'VKWebAppUpdateConfig':
@@ -18,7 +18,7 @@ connect.subscribe((e) => {
             console.log(e.detail.type);
     }
  });
-*/
+
 connect.send('VKWebAppInit')
 ReactDOM.render(<App />, document.getElementById('root'));
 
