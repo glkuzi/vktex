@@ -17,11 +17,11 @@ const appLink = "https://vk.com/app7150582";
 class Inputtex extends React.Component {
 	constructor(props) {
 		super(props);
-		var url = window.location.href;
+		this.url = window.location.href;
 		this.hashStr = '';
 		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
-		console.log(url);
-		let testing = url.toString().split('#')[1];
+		console.log(this.url);
+		let testing = this.url.toString().split('#')[1];
 
 		if (typeof testing === 'undefined'){
 			this.currentKey = '';
