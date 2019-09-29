@@ -29,7 +29,8 @@ class Inputtex extends React.Component {
 		}
 		else{
 			connect.subscribe((el) => this.parseHash(el));
-			connect.send("VKWebAppStorageGet", {"keys": [this.currentKey], "global": true});
+			console.log(this.currentKey);
+			connect.send("VKWebAppStorageGet", {"keys": [this.currentKey.toString()], "global": true});
 			this.state = {
 				value: this.restoredValue
 			};
@@ -53,6 +54,8 @@ class Inputtex extends React.Component {
 		this.hash.value = Math.floor(Math.random() * maxHash);
 		this.hashStr = this.state.value;
 		connect.send("VKWebAppSetLocation", {"location": this.hash.value.toString()});
+		// for debug
+		connect.send("VKWebAppStorageSet", {"key": this.hash.value.toString(), "value": this.hashStr, "global": true});
 		//connect.send("VKWebAppSetLocation", {"location": this.hashStr});
 	}
 
