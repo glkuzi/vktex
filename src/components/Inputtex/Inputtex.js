@@ -20,10 +20,13 @@ class Inputtex extends React.Component {
 		//newconsole = document.getElementById('root').;
 		super(props);
 		
-		this.url = document.location.hash
-		this.testing = this.url.slice(1)
+		this.url = document.location.hash;
+		this.testing = this.url.slice(1);
+		//console.log(this.testing);
+		this.codedHash = encodeURIComponent(this.testing);
 		if (typeof this.testing === 'undefined'){
 			this.currentKey = '';
+
 		}
 		else{
 			this.currentKey = this.testing;
@@ -47,7 +50,7 @@ class Inputtex extends React.Component {
 				value: this.restoredValue
 			};
 		}
-		if (typeof this.codedHash === 'undefined'){
+		if (typeof this.codedHash === 'undefined' || this.codedHash === null || this.codedHash === ''){
 			this.state = {
 				value: '$V^K\\TeX$'
 			};
