@@ -157,7 +157,7 @@ class Inputtex extends React.Component {
 	}
 
 	parseHash(e){
-		console.log(e.detail.type);
+		console.log(e);
 		if (e.detail.type.toString() == "VKWebAppStorageGetResult"){
 			this.restoredKeys = e.data.keys;
 			for (let x in this.restoredKeys){
