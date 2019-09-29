@@ -40,7 +40,6 @@ class Inputtex extends React.Component {
 			console.log('empty');
 		}
 		else{
-			
 			connect.subscribe((el) => this.parseHash(el));
 			console.log(this.currentKey);
 			connect.send("VKWebAppStorageGet", {"keys": [this.currentKey.toString()], "global": true});
@@ -48,10 +47,22 @@ class Inputtex extends React.Component {
 				value: this.restoredValue
 			};
 		}
+		if (typeof this.codedHash === 'undefined'){
+			this.state = {
+				value: '$V^K\\TeX$'
+			};
+		}
+		else {
+			this.state = {
+				value: decodeURIComponent(this.codedHash)
+			};
+		}
 
 		this.hash = {
 			value: 0
 		};
+
+		this.codedHash = encodeURIComponent(this.state.value);
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -66,7 +77,9 @@ class Inputtex extends React.Component {
 		this.setState({value: event.target.value});
 		this.hash.value = Math.floor(Math.random() * maxHash);
 		this.hashStr = this.state.value;
-		connect.send("VKWebAppSetLocation", {"location": this.hash.value.toString()});
+		this.codedHash = encodeURIComponent(this.state.value);
+		//connect.send("VKWebAppSetLocation", {"location": this.hash.value.toString()});
+		connect.send("VKWebAppSetLocation", {"location": this.codedHash});
 		// for debug
 		connect.send("VKWebAppStorageSet", {"key": this.hash.value.toString(), "value": this.hashStr, "global": true});
 		//connect.send("VKWebAppSetLocation", {"location": this.hashStr});
@@ -145,8 +158,8 @@ class Inputtex extends React.Component {
 	}
 
 	shareApp(){
-		//connect.send("VKWebAppShare", {"link": appLink + "#" + this.hash.value.toString()});
-		connect.send("VKWebAppShare", {"link": appLink + '#' + this.hash.value.toString()});
+		//connect.send("VKWebAppShare", {"link": appLink + '#' + this.hash.value.toString()});
+		connect.send("VKWebAppShare", {"link": appLink + '#' + this.codedHash});
 		connect.send("VKWebAppStorageSet", {"key": this.hash.value.toString(), "value": this.hashStr, "global": true});
 		//console.log(appLink + '#' + this.hashStr.replace(/ /g, '%20'));
 		//var url = window.location.href;
