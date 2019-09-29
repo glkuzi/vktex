@@ -18,16 +18,19 @@ class Inputtex extends React.Component {
             value: '$V^K\\TeX$'
         };
 
-        this.hash = 0;
+        this.hash = {
+        	value: 0
+		};
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 		this.onTex = this.onTex.bind(this);
+		this.shareApp = this.shareApp.bind(this);
     }
 
     handleChange(event) {
         this.setState({value: event.target.value});
-        this.hash = Math.floor(Math.random() * maxHash)
-		connect.send("VKWebAppSetLocation", {"location": this.hash});
+        this.hash.value = Math.floor(Math.random() * maxHash)
+		connect.send("VKWebAppSetLocation", {"location": this.hash.value.toString()});
     }
 
     handleSubmit(event) {
@@ -72,7 +75,8 @@ class Inputtex extends React.Component {
 	}
 
 	shareApp(){
-    	connect.send("VKWebAppShare", {"link": appLink + "#" + this.hash});
+    	connect.send("VKWebAppShare", {"link": appLink + "#" + this.hash.value.toString()});
+    	//console.log(appLink + "#" + this.hash.value.toString());
 	}
 	
     render() {
@@ -86,7 +90,7 @@ class Inputtex extends React.Component {
 				</FormLayout>
 				
 					<Div id="ImageToDownload"><Div className="display-linebreak"><Latex displayMode={true}>{this.state.value}</Latex></Div></Div>
-				<Menutex downloadImage={this.downloadImage}/>
+				<Menutex shareApp={this.shareApp} downloadImage={this.downloadImage}/>
             </div>
         );
     }
