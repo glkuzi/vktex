@@ -21,11 +21,13 @@ class Inputtex extends React.Component {
 		this.hashStr = '';
 		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
 		this.currentKey = url.replace(appLink + '#', '');
+		console.log(this.currentKey);
 		this.restoredValue = '$V^K\\TeX$';
 		if (this.currentKey == ''){
 			this.state = {
 				value: '$V^K\\TeX$'
 			};
+			console.log('empty');
 		}
 		else{
 			connect.subscribe((el) => this.parseHash(el));
@@ -144,6 +146,7 @@ class Inputtex extends React.Component {
 	}
 
 	parseHash(e){
+		console.log(e.detail.type);
 		if (e.type == "VKWebAppStorageGetResult"){
 			let restoredKeys = e.data.keys;
 			for (let x in restoredKeys){
