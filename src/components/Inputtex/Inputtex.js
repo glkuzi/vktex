@@ -9,8 +9,8 @@ import Menutex from '../Menutex'
 import html2canvas from 'html2canvas';
 import download from 'downloadjs'
 import axios from 'axios';
-import uuid from 'react-uuid'
-const myhref = '#'
+import uuid from 'react-uuid';
+const myhref = '#';
 const maxHash = 1000000;
 const appLink = "https://vk.com/app7150582";
 
@@ -50,10 +50,10 @@ class Inputtex extends React.Component {
 
 	handleChange(event) {
 		this.setState({value: event.target.value});
-		this.hash.value = Math.floor(Math.random() * maxHash)
-		this.hashStr = this.state.value
-		//connect.send("VKWebAppSetLocation", {"location": this.hash.value.toString()});
-		connect.send("VKWebAppSetLocation", {"location": this.hashStr});
+		this.hash.value = Math.floor(Math.random() * maxHash);
+		this.hashStr = this.state.value;
+		connect.send("VKWebAppSetLocation", {"location": this.hash.value.toString()});
+		//connect.send("VKWebAppSetLocation", {"location": this.hashStr});
 	}
 
     handleSubmit(event) {
@@ -131,7 +131,7 @@ class Inputtex extends React.Component {
 	shareApp(){
 		//connect.send("VKWebAppShare", {"link": appLink + "#" + this.hash.value.toString()});
 		connect.send("VKWebAppShare", {"link": appLink + '#' + this.hashStr});
-		connect.send("VKWebAppStorageSet", {"key": this.hashStr.replace(/ /g, '%20'), "value": this.hashStr});
+		connect.send("VKWebAppStorageSet", {"key": this.hash.value.toString(), "value": this.hashStr, "global": true});
 		//console.log(appLink + '#' + this.hashStr.replace(/ /g, '%20'));
 		//var url = window.location.href;
 		//var url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
