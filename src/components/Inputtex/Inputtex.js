@@ -14,22 +14,33 @@ const myhref = '#';
 const maxHash = 1000000;
 const appLink = "https://vk.com/app7150582";
 
+
 class Inputtex extends React.Component {
 	constructor(props) {
+		//newconsole = document.getElementById('root').;
 		super(props);
-		let url = window.location.href;
-		this.hashStr = '';
-		//let url = appLink + '#' + this.hashStr.replace(/ /g, '%20');
-		this.currentKey = url.split('#').slice(-1).pop();//url.replace(appLink + '#', '');
+		
+		this.url = document.location.hash
+		this.testing = this.url.slice(1)
+		if (typeof this.testing === 'undefined'){
+			this.currentKey = '';
+		}
+		else{
+			this.currentKey = this.testing;
+		}
+
+		//this.currentKey = url.replace(appLink + '#', '');
 		console.log(this.currentKey);
+		console.log(this.testing);
 		this.restoredValue = '$V^K\\TeX$';
-		if (this.currentKey === ''){
+		if (this.currentKey == ''){
 			this.state = {
 				value: '$V^K\\TeX$'
 			};
 			console.log('empty');
 		}
 		else{
+			
 			connect.subscribe((el) => this.parseHash(el));
 			console.log(this.currentKey);
 			connect.send("VKWebAppStorageGet", {"keys": [this.currentKey.toString()], "global": true});
@@ -111,7 +122,7 @@ class Inputtex extends React.Component {
 
 					axios.post(PROXY_URL + 'https://vktex.xyz/img/imgupload.php', data, config).
 					then(response => {
-						if(response.status === 200){
+						if(response.status == 200){
 							connect.send("VKWebAppShowImages", { 
 								images: [
 									response.data['url']
@@ -146,24 +157,25 @@ class Inputtex extends React.Component {
 	}
 
 	parseHash(e){
-		console.log(e.detail.type);
-		if (e.type === "VKWebAppStorageGetResult"){
-			let restoredKeys = e.data.keys;
-			for (let x in restoredKeys){
-				if (x.key === this.currentKey){
+		console.log(e);
+		if (e.detail.type.toString() == "VKWebAppStorageGetResult"){
+			this.restoredKeys = e.detail.data.keys;
+			for (let x in this.restoredKeys){
+				if (x.key == this.currentKey){
 					this.restoredValue = x.value;
 				}
 			}
 		}
-		if (e.type === "VKWebAppStorageGetFailed"){
-			console.log(e.data.error_type)
-			console.log(e.data)
+		if (e.detail.type.toString() == "VKWebAppStorageGetFailed"){
+			console.log(e.detail.data.error_type)
+			console.log(e.detail.data)
 		}
 	}
 	
     render() {
         return (
             <div>
+			<p id="testP"></p>
 				<Scrolltex onTex={this.onTex}/>
 				<FormLayout onSubmit={this.handleSubmit}>
 					<label>

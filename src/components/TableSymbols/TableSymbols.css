@@ -11,3 +11,7 @@
 	border-radius: 0;
 	border-color: white;
 }
+
+body[scheme="client_dark"] .TableSymbolsContainer>button{
+	border-color: black;
+}
